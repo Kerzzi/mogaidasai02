@@ -1,3 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+
+// 对分类表单稍作美化 
+.form-body {
+  padding: 20px;
+  border: 1px solid #eee;
+}

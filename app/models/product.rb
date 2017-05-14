@@ -19,8 +19,12 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :product_images, -> { order(weight: 'desc') },
   dependent: :destroy
+  has_one :main_product_image, -> { order(weight: 'desc') },
+    class_name: :ProductImage
 
   before_create :set_default_attrs #商品建立之前，先生成一个随机序列号
+
+  scope :onshelf, -> { where(status: Status::On) }
 
   #为了防止输错，将on/off直接设为常量
   module Status

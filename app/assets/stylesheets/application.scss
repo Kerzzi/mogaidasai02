@@ -17,3 +17,20 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome";
+
+// 前端的部分样式
+ .list-group-item a {
+   display: block;
+ }
+ .msrp {
+   text-decoration: line-through;
+ }
+ .thumbnail {
+   height: 290px;
+   &.detail {
+     height: auto;
+   }
+   a.title {
+     color: #333;
+   }
+ }

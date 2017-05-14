@@ -42,6 +42,7 @@ gem 'ancestry'  #用于读层级的产品分类
 gem 'better_errors' #可以更清晰显示错误讯息的套件
 gem 'awesome_rails_console'  #把rails console里面重新排版成易读且带颜色的代码
 gem 'will_paginate'
+gem 'paperclip', '~> 5.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

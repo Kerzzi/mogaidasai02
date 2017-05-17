@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
   has_many :addresses, -> { where(address_type: Address::AddressType::User).order("id desc") }
   belongs_to :default_address, class_name: :Address
+  has_many :orders
 
   def username
     self.email.split('@').first  # 将email之前的内容取出，作为用户名

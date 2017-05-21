@@ -14,8 +14,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%= root_path %>">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">分类</a></li>
+        <li class="active"><a href="<%= root_path %>">首页 <span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">分类浏览
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% @categories.each do |group| %>
+              <li class="list-group-item"><%= group.first.title %></li>
+              <% group.last.each do |sub_category| %>
+                <li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></a></li>
+              <% end -%>
+            <% end -%>
+          </ul>
+        </li>
+        <li><%= link_to "关于", "#" %></li>
+        <li><%= link_to "客服", "#" %></li>
       </ul>
       <%= form_tag search_products_path, method: :get, class: "navbar-form navbar-left" do %>
         <div class="form-group">
@@ -26,24 +40,34 @@
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       <% end %>
+
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "购物车(#{@shopping_cart_count})", shopping_carts_path %></li>
-        <% unless logged_in? %>
-          <li><a href="<%= new_user_path %>">注册</a></li>
-          <li><a href="<%= new_session_path %>">登录</a></li>
-        <% else %>
-          <li><a href="#">欢迎你, <%= current_user.username %></a></li>
-          <li><%= link_to "退出", logout_path, method: :delete %></li>
-        <% end -%>
+      <li><%= link_to "购物车(#{@shopping_cart_count})", shopping_carts_path %></li>
+      <% if logged_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="<%= dashboard_orders_path %>">我的订单</a></li>
-            <li><a href="<%= dashboard_addresses_path %>">我的收货地址</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="<%= dashboard_password_path %>">个人信息</a></li>
-          </ul>
-        </li>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎你, <%= current_user.email %><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if current_user.is_admin? %>
+                <li> <%= link_to('后台管理<span class="glyphicon glyphicon-stats pull-right">'.html_safe, admin_root_path) %> </li>
+                <li class="divider"></li>
+              <% end %>
+              <li> <%= link_to('我的订单 <span class="glyphicon glyphicon-user pull-right"></span>'.html_safe, dashboard_orders_path) %> </li>
+              <li> <%= link_to('我的收货地址<span class="glyphicon glyphicon-headphones pull-right"></span>'.html_safe, dashboard_addresses_path) %> </li>
+              <li role="separator" class="divider"></li>
+              <li><a href="<%= dashboard_password_path %>">个人信息</a></li>
+              <li> <%= link_to('我收藏的项目<span class="glyphicon glyphicon-heart pull-right"></span>'.html_safe, "#") %> </li>
+              <li class="divider"></li>
+              <li><%= link_to('退出<span class="glyphicon glyphicon-log-out pull-right"></span>'.html_safe, logout_path, method: :delete) %> </li>
+            </ul>
+          </li>
+        </ul>
+      <% else %>
+        <li><%= link_to "注册", new_user_path %></li>
+        <li><%= link_to "登录", new_session_path %></li>
+      <% end %>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -2,10 +2,11 @@
   <!-- <div class="col-lg-3">
     <%= render 'common/categories' %>
   </div> -->
-  <div class="col-lg-12">
+
     <ol class="breadcrumb">
-      <li class="active">Home</li>
+      <li class="active">首页</li>
     </ol>
     <%= render 'common/products' %>
-  </div>
+    <%= will_paginate @products %>
+
 </div>

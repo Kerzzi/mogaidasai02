@@ -1,16 +1,20 @@
-<div class="row">
+<div  id="pins" class="transitions-enabled">
   <% @products.each do |product| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <%= link_to image_tag(product.main_product_image.image.url(:middle), alt: product.title), product_path(product) %>
-        <div class="caption">
-          <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
-          <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
-          <p><%= show_add_to_cart product, html_class: "btn-xs" %></p>
-        </div>
-      </div>
-    </div>
-  <% end -%>
-</div>
 
-<%= will_paginate @products %>
+      <div class="box panel panel-default">
+        <%= link_to product_path(product) do %>
+          <% if product.main_product_image.present? %>
+            <%= image_tag(product.main_product_image.image.url, alt: product.title) %>
+          <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic") %>
+          <% end %>
+          <div class="caption">
+            <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
+            <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
+            <p><%= show_add_to_cart product, html_class: "btn-xs" %></p>
+          </div>
+        <% end %>
+      </div>
+
+  <% end %>
+</div>

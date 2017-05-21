@@ -15,5 +15,22 @@
 
 //= require bootstrap/alert
 //= require bootstrap-sprockets
+//= require masonry/jquery.masonry
 
 //= require home
+
+
+
+
+$(function(){
+
+  // 商品首页瀑布流展示
+    var $pins = $('#pins');
+    $pins.imagesLoaded(function(){
+      // $box.fadeIn();
+      $pins.masonry({
+        itemSelector : '.box',
+        isFitWidth: true,
+      });
+    });
+  });

@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require 'masonry/transitions'
  *= require_tree .
  *= require_self
  */
@@ -25,15 +26,26 @@
  .msrp {
    text-decoration: line-through;
  }
- .thumbnail {
-   height: 290px;
-   &.detail {
-     height: auto;
-   }
-   a.title {
-     color: #333;
-   }
+
+
+// 商品首页瀑布流展示
+
+ #pins {
+   margin: 0 auto;
+   width: 100%;
+   .box {
+      margin: 10px;
+      width: 250px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+      text-align: center;
+    padding: 0px;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
  }
+
 
 //定制购物车弹窗样式
  .media {

@@ -14,7 +14,7 @@ class ShoppingCart < ApplicationRecord
       user_uuid: options[:user_uuid],
       product_id: options[:product_id]
     }
-    
+
     #进行判断这些主键是否存在
     # 如果记录中已经有了user_uuid或product_id，则更新数量，否则为创建数量。
     record = where(cond).first

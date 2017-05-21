@@ -1,6 +1,6 @@
 class ShoppingCartsController < ApplicationController
 
-  before_action :find_shopping_cart, only: [:update, :destroy]
+  before_action :find_shopping_cart, only: [:update, :destroy, :clean]
 
   def index
     fetch_home_data
@@ -38,6 +38,13 @@ class ShoppingCartsController < ApplicationController
 
     redirect_to shopping_carts_path
   end
+
+   def clean
+     @shopping_cart.destroy if @shopping_carts
+     flash[:warning] = "已清空购物车"
+     redirect_to shopping_carts_path
+   end
+
 
   private
 

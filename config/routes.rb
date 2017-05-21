@@ -10,8 +10,13 @@ Rails.application.routes.draw do
   resources :products, only: [:show] do
     get :search, on: :collection
   end
-  
-  resources :shopping_carts
+
+  resources :shopping_carts do
+    collection do
+      delete :clean
+    end
+  end
+
   resources :addresses do
     member do
       put :set_default_address

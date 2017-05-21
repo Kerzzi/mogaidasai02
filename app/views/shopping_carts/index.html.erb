@@ -1,3 +1,8 @@
+<%= link_to("清空购物车", clean_shopping_carts_path(@shopping_carts) ,
+            method: :delete , class: "pull-right",
+            style: "text-decoration: underline;",
+            data: { confirm: "你确定要清空整个购物车吗？"} )%>
+
 <h1>购物车 (<%= @shopping_carts.count %>)</h1>
 <div class="row">
   <div class="container">

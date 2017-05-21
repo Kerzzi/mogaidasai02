@@ -42,7 +42,11 @@
       <% end %>
 
       <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "购物车(#{@shopping_cart_count})", shopping_carts_path %></li>
+      <li>
+        <%= link_to shopping_carts_path do %>
+          购物车 <i class="fa fa-shopping-cart fa-lg"></i> (<%= @shopping_cart_count %>)
+        <% end %>
+      </li>
       <% if logged_in? %>
         <li class="dropdown">
         <ul class="nav navbar-nav">
